@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   const headerContainer = document.getElementById("header-container");
-  fetch("/Projeto-Banco-de-Dados/client/src/utils/HeaderCliente.html")
+  fetch("/client/src/utils/HeaderCliente.html")
     .then((response) => response.text())
     .then((data) => {
       headerContainer.innerHTML = data;
@@ -321,7 +321,7 @@ function excluirConta(event) {
 function logout() {
   sessionStorage.removeItem("loggedInUser");
   window.location.href =
-    "/Projeto-Banco-de-Dados/client/src/pages/login/cliente/LoginCliente.html";
+    "/client/src/pages/login/cliente/LoginCliente.html";
 }
 
 function deleteAccountAndLogout() {

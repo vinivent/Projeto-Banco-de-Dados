@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   if (!loggedInUser) {
     console.error("Nenhum usuário logado encontrado");
     window.location.href =
-      "/Projeto-Banco-de-Dados/client/src/pages/login/cliente/LoginCliente.html";
+      "/client/src/pages/login/cliente/LoginCliente.html";
     return;
   } else {
     console.log("Usuário logado encontrado:", loggedInUser);
@@ -97,7 +97,7 @@ function confirmarPedido() {
   if (!loggedInUser) {
     alert("Nenhum usuário logado encontrado. Por favor, faça login.");
     window.location.href =
-      "/Projeto-Banco-de-Dados/client/src/pages/login/cliente/LoginCliente.html";
+      "/client/src/pages/login/cliente/LoginCliente.html";
     return;
   }
 
@@ -126,7 +126,7 @@ function confirmarPedido() {
 
 function ajustarEndereco() {
   window.location.href =
-    "/Projeto-Banco-de-Dados/client/src/pages/cliente/configuracoesDeContaCliente/configuracoesDeContaCliente.html";
+    "/client/src/pages/cliente/configuracoesDeContaCliente/configuracoesDeContaCliente.html";
 }
 
 function abrirModalPagamento() {

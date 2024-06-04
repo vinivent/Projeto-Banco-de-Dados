@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   if (!loggedInUser || !loggedInUser.cpf) {
     console.error("Nenhum funcionário logado encontrado");
     window.location.href =
-      "/Projeto-Banco-de-Dados/client/src/pages/login/funcionario/LoginFuncionario.html";
+      "/client/src/pages/login/funcionario/LoginFuncionario.html";
     return;
   } else {
     console.log("Funcionário logado encontrado:", loggedInUser);

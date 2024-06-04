@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!loggedInUser) {
     console.error("Nenhum usuário logado encontrado");
     window.location.href =
-      "/Projeto-Banco-de-Dados/client/src/pages/login/cliente/LoginCliente.html";
+      "/client/src/pages/login/cliente/LoginCliente.html";
     return;
   } else {
     console.log("Usuário logado encontrado:", loggedInUser);

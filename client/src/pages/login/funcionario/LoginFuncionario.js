@@ -20,16 +20,20 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch(url, { method: "GET" });
       if (response.ok) {
         const user = await response.json();
-        sessionStorage.setItem('loggedInUser', JSON.stringify(user)); // Salvar o usuário no sessionStorage
-        const redirectUrl = "/Projeto-Banco-de-Dados/client/src/pages/funcionario/PedidosEmAberto/PedidosEmAberto.html";
+        sessionStorage.setItem("loggedInUser", JSON.stringify(user)); // Salvar o usuário no sessionStorage
+        const redirectUrl =
+          "/client/src/pages/funcionario/PedidosEmAberto/PedidosEmAberto.html";
         window.location.href = redirectUrl;
       } else {
         senhaInput.classList.add("is-invalid");
-        senhaInput.nextElementSibling.textContent = "Senha ou CPF incorreto(a).";
+        senhaInput.nextElementSibling.textContent =
+          "Senha ou CPF incorreto(a).";
       }
     } catch (error) {
       console.error("Erro na requisição:", error);
-      alert("Erro ao tentar fazer login. Por favor, tente novamente mais tarde.");
+      alert(
+        "Erro ao tentar fazer login. Por favor, tente novamente mais tarde."
+      );
     }
   });
 });

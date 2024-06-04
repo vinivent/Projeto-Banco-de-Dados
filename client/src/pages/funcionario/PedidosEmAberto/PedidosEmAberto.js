@@ -89,45 +89,59 @@ async function loadPedidosEmAberto() {
 
     const pedidosDetalhados = await Promise.all(promises);
 
-    pedidosDetalhados.forEach(
-      ({ pedido, cliente, itemDetails, truncatedItemDetails, valorTotal }) => {
-        const card = document.createElement("div");
-        card.className = "col-md-4";
-        card.innerHTML = `
-              <div class="card mb-4 shadow-lg rounded-2 border border-2 border-black">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                  <h3 class="my-0">Pedido N° ${pedido.nrPedido}</h3>
-                  ${
-                    itemDetails.length > 100
-                      ? `<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#verMaisModal" onclick="showMoreDetails('${pedido.nrPedido}', '${cliente.nome}', '${cliente.sobrenome}', '${itemDetails}', ${valorTotal})">...</button>`
-                      : ""
-                  }
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title">${new Date(
-                    pedido.dataHoraPedido
-                  ).toLocaleDateString()}</h6>
-                  <p class="card-text" id="itemDetails-${pedido.nrPedido}">
-                    ${truncatedItemDetails}
-                  </p>
-                  <p class="card-text"><i class="bi bi-person"></i> ${
-                    cliente.nome
-                  } ${cliente.sobrenome}</p>
-                  <h5 class="card-title">Total: R$ ${valorTotal.toFixed(2)}</h5>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-success" onclick="aceitarPedido(${
-                      pedido.nrPedido
-                    })">Aceitar</button>
-                    <button type="button" class="btn btn-danger" onclick="negarPedido(${
-                      pedido.nrPedido
-                    })">Negar</button>
-                  </div>
+    if (pedidosDetalhados.length > 0) {
+      pedidosDetalhados.forEach(
+        ({
+          pedido,
+          cliente,
+          itemDetails,
+          truncatedItemDetails,
+          valorTotal,
+        }) => {
+          const card = document.createElement("div");
+          card.className = "col-md-4";
+          card.innerHTML = `
+            <div class="card mb-4 shadow-lg rounded-2 border border-2 border-black">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="my-0">Pedido N° ${pedido.nrPedido}</h3>
+                ${
+                  itemDetails.length > 100
+                    ? `<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#verMaisModal" onclick="showMoreDetails('${pedido.nrPedido}', '${cliente.nome}', '${cliente.sobrenome}', '${itemDetails}', ${valorTotal})">...</button>`
+                    : ""
+                }
+              </div>
+              <div class="card-body">
+                <h6 class="card-title">${new Date(
+                  pedido.dataHoraPedido
+                ).toLocaleDateString()}</h6>
+                <p class="card-text" id="itemDetails-${pedido.nrPedido}">
+                  ${truncatedItemDetails}
+                </p>
+                <p class="card-text"><i class="bi bi-person"></i> ${
+                  cliente.nome
+                } ${cliente.sobrenome}</p>
+                <h5 class="card-title">Total: R$ ${valorTotal.toFixed(2)}</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button type="button" class="btn btn-success" onclick="aceitarPedido(${
+                    pedido.nrPedido
+                  })">Aceitar</button>
+                  <button type="button" class="btn btn-danger" onclick="negarPedido(${
+                    pedido.nrPedido
+                  })">Negar</button>
                 </div>
               </div>
-            `;
-        pedidosEmAbertoContainer.appendChild(card);
-      }
-    );
+            </div>
+          `;
+          pedidosEmAbertoContainer.appendChild(card);
+        }
+      );
+    } else {
+      // Exibir mensagem de que não há pedidos em aberto
+      const noPedidosMessage = document.createElement("p");
+      noPedidosMessage.textContent = "Não há pedidos em aberto no momento.";
+      noPedidosMessage.classList.add("text-center");
+      pedidosEmAbertoContainer.appendChild(noPedidosMessage);
+    }
   } catch (error) {
     console.error("Erro ao carregar pedidos em aberto:", error);
   }

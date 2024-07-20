@@ -34,6 +34,8 @@ Antes de começar, certifique-se de ter o seguinte instalado no seu ambiente de 
 - JDK 17
 - Maven
 - Git
+- MySQL Server
+- DBeaver ou MySQLWorkbench
 
 ## Clonar o Repositório
 
@@ -67,6 +69,38 @@ spring.datasource.password=<sua_password>
 ```
 
 Passo primordial, caso os dados não sejam devidamente alterados o projeto é executado porém não vai funcionar, visto que o banco de dados é inexistente.
+
+## Criar Banco de Dados
+
+Antes de executar o servidor, é necessário criar o banco de dados necessário para o projeto localmente. Siga os passos abaixo para configurar o banco de dados:
+
+1. **Abrir o DBeaver ou MySQL Workbench:**
+   - Abra o DBeaver ou MySQL Workbench no seu computador.
+
+2. **Criar o Banco de Dados MySQL:**
+   - No seu cliente MySQL (DBeaver ou MySQL Workbench), crie um novo banco de dados com o nome "restaurante".
+
+     Exemplo no MySQL Workbench:
+     ```sql
+     CREATE DATABASE restaurante;
+     ```
+
+3. **Selecionar o Banco de Dados Criado:**
+   - Após criar o banco de dados, selecione-o usando o comando `USE`.
+
+     Exemplo:
+     ```sql
+     USE restaurante;
+     ```
+
+4. **Executar os Scripts SQL para Criar as Tabelas:**
+   - Acesse os scripts SQL localizados na pasta `db/Scripts` do seu projeto.
+   - Execute os scripts `ScriptPortalDoTemaki.sql` e `ScriptSQLAvancado.sql` para criar as tabelas necessárias no banco de dados.
+
+     Exemplo no MySQL Workbench:
+     - Abra cada script, selecione todo o conteúdo e execute-o no banco de dados `restaurante` que você criou anteriormente.
+
+Ao seguir esses passos, seu ambiente estará configurado corretamente com o banco de dados necessário para o projeto, utilizando os scripts fornecidos na pasta `db/Scripts`.
 
 ## Executar o Servidor
 
